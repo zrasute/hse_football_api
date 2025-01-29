@@ -13,3 +13,8 @@ license = {text = "MIT"}
 
 [tool.pdm]
 distribution = false
+
+[dependency-groups]
+dev = [
+    "ruff>=0.9.3",
+]
