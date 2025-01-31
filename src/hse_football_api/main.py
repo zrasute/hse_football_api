@@ -3,8 +3,9 @@ from fastapi import FastAPI
 
 from hse_football_api.api import router as api_router
 from hse_football_api.core.config import settings
+from hse_football_api.core.lifespan import lifespan
 
-app = FastAPI()
+app = FastAPI(lifespan=lifespan)
 app.include_router(api_router, prefix=settings.api.prefix)
 
 
