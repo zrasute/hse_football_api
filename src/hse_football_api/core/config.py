@@ -1,5 +1,9 @@
-from pydantic import BaseModel
-from pydantic_settings import BaseSettings
+from pathlib import Path
+
+from pydantic import BaseModel, PostgresDsn
+from pydantic_settings import BaseSettings, SettingsConfigDict
+
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 class RunConfig(BaseModel):
@@ -24,6 +28,11 @@ class Settings(BaseSettings):
     api: ApiPrefix = ApiPrefix()
     db: DatabaseConfig
 
+    model_config = SettingsConfigDict(
+        env_file=BASE_DIR / ".env",
+        case_sensitive=False,
+        env_nested_delimiter="__",
+    )
 
 
 settings = Settings()  # noqa
