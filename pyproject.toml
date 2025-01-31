@@ -22,6 +22,10 @@ license = {text = "MIT"}
 [tool.pdm]
 distribution = false
 
+[tool.pdm.scripts]
+dev_start.cmd = "uvicorn hse_football_api.main:app --reload"
+dev_start.env = {PYTHONPATH = "src"}
+
 [dependency-groups]
 dev = [
     "ruff>=0.9.3",
