@@ -1,0 +1,81 @@
+[project]
+name = "hse_football_api"
+version = "0.1.0"
+description = "Default template for PDM package"
+authors = [
+    {name = "Islam Kodzokov", email = "email@example.com"},
+]
+dependencies = [
+    "fastapi>=0.115.7",
+    "uvicorn[standard]>=0.34.0",
+    "pydantic[email]>=2.10.6",
+    "pydantic-settings>=2.7.1",
+    "sqlalchemy[asyncio]>=2.0.37",
+    "asyncpg>=0.30.0",
+    "alembic>=1.14.1"
+]
+requires-python = "==3.12.*"
+readme = "README.md"
+license = {text = "MIT"}
+
+
+[tool.pdm]
+distribution = false
+
+[tool.pdm.scripts]
+dev_start.cmd = "uvicorn hse_football_api.main:app --reload"
+dev_start.env = {PYTHONPATH = "src"}
+
+[dependency-groups]
+dev = [
+    "ruff>=0.9.3",
+]
+
+[tool.ruff]
+# Exclude a variety of commonly ignored directories.
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".ipynb_checkpoints",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pyenv",
+    ".pytest_cache",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    ".vscode",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "site-packages",
+    "venv",
+]
+
+line-length = 88
+indent-width = 4
+
+[tool.ruff.lint]
+# https://docs.astral.sh/ruff/rules/
+select = ["E4", "E501", "E7", "E9", "F", "I", "N", "SIM", "FAST", "W", "C4", "DTZ", "TC"]
+ignore = ["W191"]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["E402"]
+"**/{tests,docs,tools}/*" = ["E402"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
