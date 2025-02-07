@@ -7,11 +7,13 @@ __all__ = [
     "PlayerStatistics",
     "Roster",
     "Match",
+    "MatchEvent",
 ]
 
 from .base import Base
 from .db_helper import db_helper
 from .match import Match
+from .match_event import MatchEvent
 from .player import Player
 from .player_statistics import PlayerStatistics
 from .roster import Roster
