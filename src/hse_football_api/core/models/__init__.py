@@ -9,10 +9,12 @@ __all__ = [
     "Match",
     "MatchEvent",
     "TournamentStandings",
+    "Manager",
 ]
 
 from .base import Base
 from .db_helper import db_helper
+from .manager import Manager
 from .match import Match
 from .match_event import MatchEvent
 from .player import Player
