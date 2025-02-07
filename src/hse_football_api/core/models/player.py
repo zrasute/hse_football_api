@@ -14,3 +14,6 @@ class Player(Base, IdPkMixin):
     last_name: Mapped[str] = mapped_column(String(32))
     date_of_birth: Mapped[datetime]
     is_verified: Mapped[bool] = mapped_column(default=False)
+
+    def __repr__(self) -> str:
+        return f"<Player(id={self.id}, name={self.name} {self.last_name})>"
