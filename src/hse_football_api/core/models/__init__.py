@@ -8,6 +8,7 @@ __all__ = [
     "Roster",
     "Match",
     "MatchEvent",
+    "TournamentStandings",
 ]
 
 from .base import Base
@@ -19,3 +20,4 @@ from .player_statistics import PlayerStatistics
 from .roster import Roster
 from .team import Team
 from .tournament import Tournament
+from .tournament_standings import TournamentStandings
