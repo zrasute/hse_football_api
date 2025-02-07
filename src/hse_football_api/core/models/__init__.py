@@ -5,11 +5,13 @@ __all__ = [
     "Team",
     "Tournament",
     "PlayerStatistics",
+    "Roster",
 ]
 
 from .base import Base
 from .db_helper import db_helper
 from .player import Player
 from .player_statistics import PlayerStatistics
+from .roster import Roster
 from .team import Team
 from .tournament import Tournament
