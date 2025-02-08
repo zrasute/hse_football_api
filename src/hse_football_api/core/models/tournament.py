@@ -1,10 +1,14 @@
 from datetime import datetime
+from typing import TYPE_CHECKING
 
 from sqlalchemy import String
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from .base import Base
 from .mixins import IdPkMixin
+
+if TYPE_CHECKING:
+    from .roster import Roster
 
 
 class Tournament(Base, IdPkMixin):
@@ -15,6 +19,8 @@ class Tournament(Base, IdPkMixin):
     start_date: Mapped[datetime]
     end_date: Mapped[datetime]
     is_league: Mapped[bool]
+
+    rosters: Mapped[list["Roster"]] = relationship(back_populates="tournament")
 
     def __repr__(self) -> str:
         return f"<Tournament(id={self.id}, name={self.name})>"
