@@ -1,11 +1,17 @@
 import uuid
+from typing import TYPE_CHECKING
 
 from sqlalchemy import CheckConstraint, Enum, ForeignKey
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from .base import Base
 from .enums import EventType
 from .mixins import IdPkMixin
+
+if TYPE_CHECKING:
+    from .match import Match
+    from .player import Player
+    from .team import Team
 
 
 class MatchEvent(Base, IdPkMixin):
@@ -22,6 +28,10 @@ class MatchEvent(Base, IdPkMixin):
         Enum(EventType, name="event_type_enum")
     )
     event_time: Mapped[int]
+
+    player: Mapped["Player"] = relationship(back_populates="match_events")
+    match: Mapped["Match"] = relationship(back_populates="events")
+    team: Mapped["Team"] = relationship(back_populates="match_events")
 
     def __repr__(self) -> str:
         return (

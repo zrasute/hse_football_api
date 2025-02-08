@@ -8,6 +8,7 @@ from .base import Base
 from .mixins import IdPkMixin
 
 if TYPE_CHECKING:
+    from .match_event import MatchEvent
     from .player_statistics import PlayerStatistics
     from .roster import Roster
 
@@ -25,6 +26,10 @@ class Player(Base, IdPkMixin):
         cascade="all, delete-orphan",
     )
     statistics: Mapped[list["PlayerStatistics"]] = relationship(
+        back_populates="player",
+        cascade="all, delete-orphan",
+    )
+    match_events: Mapped[list["MatchEvent"]] = relationship(
         back_populates="player",
         cascade="all, delete-orphan",
     )

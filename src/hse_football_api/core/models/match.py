@@ -1,11 +1,15 @@
 import uuid
 from datetime import datetime
+from typing import TYPE_CHECKING
 
 from sqlalchemy import CheckConstraint, ForeignKey, String
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from .base import Base
 from .mixins import IdPkMixin
+
+if TYPE_CHECKING:
+    from .match_event import MatchEvent
 
 
 class Match(Base, IdPkMixin):
@@ -25,6 +29,11 @@ class Match(Base, IdPkMixin):
     date: Mapped[datetime]
     referee_rating: Mapped[int]
     stage: Mapped[str] = mapped_column(String(32))
+
+    events: Mapped[list["MatchEvent"]] = relationship(
+        back_populates="match",
+        cascade="all, delete-orphan",
+    )
 
     def __repr__(self) -> str:
         return (
