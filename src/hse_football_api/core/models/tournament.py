@@ -8,6 +8,7 @@ from .base import Base
 from .mixins import IdPkMixin
 
 if TYPE_CHECKING:
+    from .player_statistics import PlayerStatistics
     from .roster import Roster
 
 
@@ -21,6 +22,10 @@ class Tournament(Base, IdPkMixin):
     is_league: Mapped[bool]
 
     rosters: Mapped[list["Roster"]] = relationship(back_populates="tournament")
+    player_statistics: Mapped[list["PlayerStatistics"]] = relationship(
+        back_populates="tournament",
+        cascade="all, delete-orphan",
+    )
 
     def __repr__(self) -> str:
         return f"<Tournament(id={self.id}, name={self.name})>"

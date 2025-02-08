@@ -8,6 +8,7 @@ from .base import Base
 from .mixins import IdPkMixin
 
 if TYPE_CHECKING:
+    from .player_statistics import PlayerStatistics
     from .roster import Roster
 
 
@@ -20,6 +21,10 @@ class Player(Base, IdPkMixin):
     is_verified: Mapped[bool] = mapped_column(default=False)
 
     rosters: Mapped[list["Roster"]] = relationship(
+        back_populates="player",
+        cascade="all, delete-orphan",
+    )
+    statistics: Mapped[list["PlayerStatistics"]] = relationship(
         back_populates="player",
         cascade="all, delete-orphan",
     )
