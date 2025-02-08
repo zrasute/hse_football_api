@@ -1,11 +1,15 @@
 import uuid
 from datetime import datetime
+from typing import TYPE_CHECKING
 
 from sqlalchemy import ForeignKey, UniqueConstraint
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from .base import Base
 from .mixins import IdPkMixin
+
+if TYPE_CHECKING:
+    from .team import Team
 
 
 class Manager(Base, IdPkMixin):
@@ -17,3 +21,5 @@ class Manager(Base, IdPkMixin):
     manager_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("players.id"))
     start_date: Mapped[datetime]
     end_date: Mapped[datetime | None]
+
+    team: Mapped["Team"] = relationship(back_populates="managers")
