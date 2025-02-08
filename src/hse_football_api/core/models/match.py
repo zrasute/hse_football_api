@@ -10,6 +10,7 @@ from .mixins import IdPkMixin
 
 if TYPE_CHECKING:
     from .match_event import MatchEvent
+    from .tournament import Tournament
 
 
 class Match(Base, IdPkMixin):
@@ -34,6 +35,7 @@ class Match(Base, IdPkMixin):
         back_populates="match",
         cascade="all, delete-orphan",
     )
+    tournament: Mapped["Tournament"] = relationship(back_populates="matches")
 
     def __repr__(self) -> str:
         return (
