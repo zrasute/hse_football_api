@@ -11,6 +11,7 @@ if TYPE_CHECKING:
     from .match import Match
     from .player_statistics import PlayerStatistics
     from .roster import Roster
+    from .tournament_standings import TournamentStandings
 
 
 class Tournament(Base, IdPkMixin):
@@ -28,6 +29,9 @@ class Tournament(Base, IdPkMixin):
         cascade="all, delete-orphan",
     )
     matches: Mapped[list["Match"]] = relationship(back_populates="tournament")
+    standings: Mapped[list["TournamentStandings"]] = relationship(
+        back_populates="tournament"
+    )
 
     def __repr__(self) -> str:
         return f"<Tournament(id={self.id}, name={self.name})>"
