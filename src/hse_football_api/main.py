@@ -8,7 +8,6 @@ from hse_football_api.core.lifespan import lifespan
 app = FastAPI(lifespan=lifespan)
 app.include_router(api_router, prefix=settings.api.prefix)
 
-
 if __name__ == "__main__":
     uvicorn.run(
         "hse_football_api.main:app",
