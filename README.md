@@ -3,25 +3,26 @@
 ## Getting Started
 
 ### Prerequisites
+
 Make sure you have the following installed on your system:
 
 - [Git](https://git-scm.com/)
-- [PDM](https://pdm-project.org/en/latest/#installation) 
+- [uv](https://docs.astral.sh/uv/)
 - [Docker](https://www.docker.com/)
 - [Docker Compose](https://docs.docker.com/compose/install/)
 
 ### Installation
-1. **Clone the repository:**  
+
+1. **Clone the repository:**
    ```shell
     git clone git@github.com:zrasute/hse_football_api.git
     cd hse_football_api
 2. **Install all dependencies:**
     ```shell
-    pdm install
-    eval $(pdm venv activate)
+    uv sync
     ```
 3. **Set up environment variables**  
-Copy the .env.template files and rename them to .env, then update the necessary values.
+   Copy the .env.template files and rename them to .env, then update the necessary values.
    ```shell
    cp .env.template .env
    ```
@@ -29,7 +30,7 @@ Copy the .env.template files and rename them to .env, then update the necessary 
     ```shell
     docker compose up -d
     ```
-5. **Run FastAPI application using [PDM Scripts](https://pdm-project.org/en/latest/usage/scripts/):**
+5. **Run FastAPI application:**
     ```shell
-    pdm run dev_start
+    uv run uvicorn hse_football_api.main:app --app-dir src --reload
     ```

@@ -1,9 +1,9 @@
 [project]
 name = "hse_football_api"
 version = "0.1.0"
-description = "Default template for PDM package"
+description = "HSE Football API"
 authors = [
-    {name = "Islam Kodzokov", email = "email@example.com"},
+    { name = "Islam Kodzokov", email = "email@example.com" },
 ]
 dependencies = [
     "fastapi>=0.115.7",
@@ -16,15 +16,8 @@ dependencies = [
 ]
 requires-python = "==3.12.*"
 readme = "README.md"
-license = {text = "MIT"}
+license = { text = "MIT" }
 
-
-[tool.pdm]
-distribution = false
-
-[tool.pdm.scripts]
-dev_start.cmd = "uvicorn hse_football_api.main:app --reload"
-dev_start.env = {PYTHONPATH = "src"}
 
 [dependency-groups]
 dev = [
@@ -67,7 +60,7 @@ indent-width = 4
 
 [tool.ruff.lint]
 # https://docs.astral.sh/ruff/rules/
-select = ["E4", "E501", "E7", "E9", "F", "I", "N", "SIM", "FAST", "W", "C4", "DTZ", "TC"]
+select = ["E4", "E501", "E7", "E9", "F", "I", "N", "SIM", "FAST", "W", "C4", "DTZ", "TC", "B", "UP"]
 ignore = ["W191"]
 
 [tool.ruff.lint.per-file-ignores]
